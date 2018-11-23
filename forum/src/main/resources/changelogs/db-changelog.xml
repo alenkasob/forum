@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns = "http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation = "http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet author = "d" id = "1">
+
+        <createTable tableName = "frm_users">
+
+            <column name = "id" type = "VARCHAR(32)">
+                <constraints nullable = "false" primaryKey = "true" />
+            </column>
+
+            <column name = "name" type = "VARCHAR(128)">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "pass" type = "VARCHAR(50)">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "role" type = "VARCHAR(15)">
+                <constraints nullable = "false" />
+            </column>
+
+        </createTable>
+
+        <createIndex tableName = "frm_users"
+                     indexName = "idx_frm_users_name"
+        >
+            <column name = "name" />
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet author = "s" id = "2">
+
+        <createTable tableName = "frm_groups">
+
+            <column name = "id" type = "VARCHAR(32)">
+                <constraints nullable = "false" primaryKey = "true" />
+            </column>
+
+            <column name = "name" type = "VARCHAR(128)">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "idx" type = "INT">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "is_public" type = "BOOL">
+                <constraints nullable = "false" />
+            </column>
+
+        </createTable>
+
+
+
+    </changeSet>
+
+
+    <changeSet author = "s" id = "3">
+
+        <createTable tableName = "frm_subj">
+
+            <column name = "id" type = "VARCHAR(32)">
+                <constraints nullable = "false" primaryKey = "true" />
+            </column>
+
+            <column name = "title" type = "VARCHAR(128)">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "user_id" type = "VARCHAR(32)">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "dt_create" type = "DATETIME">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "is_open" type = "BOOL">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "cnt_msg" type = "INT">
+                <constraints nullable = "false" />
+            </column>
+
+
+
+        </createTable>
+
+        <createIndex tableName = "frm_subj"
+                     indexName = "idx_frm_subj_user_id"
+        >
+            <column name = "user_id" />
+        </createIndex>
+
+    </changeSet>
+
+
+    <changeSet author = "s" id = "4">
+
+        <createTable tableName = "frm_msgs">
+
+            <column name = "id" type = "VARCHAR(32)">
+                <constraints nullable = "false" primaryKey = "true" />
+            </column>
+
+            <column name = "idx" type = "INT">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "user_id" type = "VARCHAR(32)">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "dt_create" type = "DATETIME">
+                <constraints nullable = "false" />
+            </column>
+
+            <column name = "message" type = "CLOB">
+                <constraints nullable = "false" />
+            </column>
+
+
+
+
+        </createTable>
+
+        <createIndex tableName = "frm_msgs"
+                     indexName = "idx_frm_msgs_user_id"
+        >
+            <column name = "user_id" />
+        </createIndex>
+
+        <createIndex tableName = "frm_msgs"
+                     indexName = "idx_frm_msgs_idx"
+        >
+            <column name = "idx" />
+        </createIndex>
+
+
+    </changeSet>
+
+
+</databaseChangeLog>
